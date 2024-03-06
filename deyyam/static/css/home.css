@@ -1,0 +1,9 @@
+.btn-login:hover {
+    border-color: white; /* Change border color on hover */
+    background-color: rgba(255, 255, 255, 0.3); /* Bright background with transparency on hover */
+}
+
+.btn-registration:hover {
+    border-color: white; /* Change border color on hover */
+    background-color: rgba(255, 255, 255, 0.3); /* Bright background with transparency on hover */
+}

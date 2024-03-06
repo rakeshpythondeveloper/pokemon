@@ -1,0 +1,1 @@
+from deyyam.models.models import *
