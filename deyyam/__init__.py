@@ -1,6 +1,7 @@
 from flask import Flask
 from deyyam.extensions.db import db
 from deyyam.routes import auth,poker,main
+from deyyam.extensions.migrate import migrate
 
 def blueprints(app):
     app.register_blueprint(auth.auth_bp)
@@ -17,6 +18,7 @@ def create_app():
     blueprints(server)
     load_config(server)
     db.init_app(server)
+    migrate.init_app(server,db)
     with server.app_context():
         db.create_all()
         

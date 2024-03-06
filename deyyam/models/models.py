@@ -13,8 +13,12 @@ class Pokemon(db.Model):
     category = db.Column(db.String(100), nullable=False)
     abilities = db.Column(db.String(200), nullable=False)
     image_path = db.Column(db.String(200), nullable=True)
+    
 
 class users(db.Model):
+     __tablename__ = 'users'
+     
      id = db.Column(db.Integer, primary_key=True)
      username = db.Column(db.String(100), nullable=False)
      password = db.Column(db.String(200), nullable=False)
+     profile_image = db.Column(db.String(200), nullable=False)
