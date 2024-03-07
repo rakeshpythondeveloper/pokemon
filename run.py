@@ -1,4 +1,4 @@
-from deyyam.__init__ import create_app
+from deyyam.app import create_app
 
 app=create_app()
 
