@@ -1,1 +1,1 @@
-gunicorn -w 4 -b 0.0.0.0:8070 run:app
+web: python run.py
