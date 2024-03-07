@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="static/css/main.css">
 </head>
-<body class="font-mono h-full bg-cover bg-center object-cover w-full" style="background-image:url('static/images/wallpaper.jpg');">
+<body class="font-mono h-screen bg-cover bg-center object-cover " style="background-image:url('static/images/pokeback.jpg');">
     <div class="flex bg-teal-700 text-white w-full h-auto items-center py-4 px-8 rounded-full">
         <div class="flex-1">
             <div class="flex items-center">
@@ -17,19 +17,19 @@
         </div>
         <div class="flex gap-4">
             <form method="post" action="/new" class="flex justify-center mb-8">
-                <button type="submit" class="border-2 border-cyan-700 px-6 py-2 bg-lime-950 text-white rounded-md hover:bg-orange-500 transition duration-300">Add a Pokémon</button>
+                <button type="submit" class="border-2 italic border-cyan-700 px-6 py-2 bg-lime-950 text-white rounded-md hover:bg-orange-500 transition duration-300">Add a Pokémon</button>
             </form>
-            <a href="/profile" class=" border-2 border-cyan-800 rounded-md bg-yellow-950 px-4 py-2 mr-4 h-10 hover:bg-slate-600">Profile</a>
-            <a href="/" class=" border-2 border-cyan-900 bg-amber-900 text-white rounded-md px-4 py-2 h-10 hover:bg-green-500">LOGOUT</a>
+            <a href="/profile" class=" border-2 border-cyan-800 rounded-md bg-yellow-950 px-4 py-2 mr-4 h-10 hover:bg-slate-600 italic">Profile</a>
+            <a href="/" class=" border-2 border-cyan-900 bg-amber-900 text-white rounded-md px-4 py-2 h-10 hover:bg-green-500 italic">LOGOUT</a>
         
         </div>
     </div>
 
     <h1 class="text-4xl text-center py-8"></h1>
 
-    <form method="POST" action="/main" class="flex justify-center mb-8">
-        <input type="text" name="search_term" placeholder="Search by name" class="px-4 py-2 border border-gray-300 rounded-md w-1/2">
-        <button type="submit" class="px-6 py-2 bg-yellow-400 text-black rounded-md ml-2 hover:bg-yellow-500 transition duration-300">Search</button>
+    <form method="POST" action="/main" class="flex justify-center mb-8 ">
+        <input type="text" name="search_term" placeholder="Search by name" class="px-4 py-2 border border-gray-300 rounded-md w-1/2 ">
+        <button type="submit" class="px-6 py-2 bg-yellow-600 text-black rounded-md ml-2 hover:bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 transition duration-300 italic text-white ">Search</button>
     </form>
 
    
