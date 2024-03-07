@@ -6,10 +6,11 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 h-screen flex items-center justify-center">
+<body class=" h-screen flex items-center justify-center bg-cover"
+style="background-image:url('static/images/wallpaper.jpg')">
 
 <div class="container">
-    <div class="bg-white rounded-lg shadow-md p-8 max-w-md">
+    <div class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-lg shadow-md p-8 max-w-md">
         <h1 class="text-3xl font-semibold mb-4 text-center text-gray-800">Login</h1>
         <form method="POST" action="/login">
             {{ form.hidden_tag() }}
