@@ -1,12 +1,15 @@
 from flask import Flask
 from deyyam.extensions.db import db
-from deyyam.routes import auth,poker,main
+from deyyam.routes import auth,poker,main,user
 from deyyam.extensions.migrate import migrate
+from deyyam.extensions.login_manager import login_manager
+from deyyam.models.models import User 
 
 def blueprints(app):
     app.register_blueprint(auth.auth_bp)
     app.register_blueprint(main.main_bp)
     app.register_blueprint(poker.poker_bp)  
+    app.register_blueprint(user.user_bp)
     
 def load_config(app):    
     app.config['SECRET_KEY'] = "secret-key"
@@ -19,7 +22,13 @@ def create_app():
     load_config(server)
     db.init_app(server)
     migrate.init_app(server,db)
+    login_manager.init_app(server)
+   
+    
     with server.app_context():
         db.create_all()
+    @login_manager.user_loader 
+    def load_user(user_id):
+        return User.query.get(int(user_id))
         
     return server

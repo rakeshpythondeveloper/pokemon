@@ -1,8 +1,8 @@
 
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FloatField
-from wtforms.validators import DataRequired
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FloatField,FileField
+from wtforms.validators import DataRequired,InputRequired
 from flask_wtf import FlaskForm
-
+from flask_wtf.file import FileAllowed,FileField
 
 
 class MyForm(FlaskForm):
@@ -24,4 +24,6 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired()])
+    profile_image = FileField("profile_image",validators=[FileAllowed(['jpg','png','jpeg'])] )
     submit = SubmitField('register')
+    

@@ -1,52 +1,57 @@
-from flask import render_template, redirect, request,Blueprint
+from flask import render_template, redirect, request,Blueprint,flash
 from deyyam.forms.forms import MyForm
 from deyyam.oper.oper import save_image
 from deyyam.extensions.db import db
 from deyyam.models.models import Pokemon
+from flask_login import current_user
 import requests
 from PIL import Image
 from io import BytesIO
+from deyyam.oper.oper import insert_pokemon_data
 
 
 poker_bp=Blueprint("poker",__name__)
 @poker_bp.route("/new", methods=["GET", "POST"])
 def new():
     form = MyForm(request.form)
-    if request.method == "POST":
-        if form.validate_on_submit():
-            name = form.name.data
+    pokemon_exists = False 
+    if form.validate_on_submit():
+        name = form.name.data
+
+       
+        existing_pokemon = Pokemon.query.filter_by(name=name).first()
+
+        if existing_pokemon:
+            pokemon_exists = True  
+            flash("This Pokémon already exists!", "error")
+            return render_template("newpokemon.html", form=form, pokemon_exists=pokemon_exists) 
+        else:
             image_url = form.image_url.data
             description = form.description.data
             height = form.height.data
             category = form.category.data
             weight = form.weight.data
             abilities = form.abilities.data
-            
-            response = requests.get(image_url)
-            if response.status_code == 200:
-                image_data = BytesIO(response.content)
-                image = Image.open(image_data)
-                image_filename = f"{name.replace(' ', '_')}.png"
-                image_path = f"deyyam/static/images/{image_filename}"
-                image.save(image_path)
-            
-                print("Received form data:")
-                print(f"Name: {name}, Image URL: {image_url}, Description: {description}, Height: {height}, Weight: {weight}, Category: {category}, Abilities: {abilities}")
 
-                image_path = save_image(image_url, name)
+        
+            if current_user.is_authenticated:
+                user_id = current_user.id
 
-                print("Saved image path:", image_path)
+                image_response = requests.get(image_url)
+                if image_response.status_code == 200:
+                    image_data = BytesIO(image_response.content)
+                    image = Image.open(image_data)
+                    image_filename = f"{name.replace(' ', '_')}.png"
+                    image_path = f"deyyam/static/images/{image_filename}" 
 
-                pokemon = Pokemon(name=name, image_url=image_url, description=description, height=height,
-                                weight=weight, category=category, abilities=abilities, image_path=image_path)
-                db.session.add(pokemon)
-                db.session.commit()
+                    image.save(image_path)
+                else:
+                    image_path = None
 
+                insert_pokemon_data(name, image_url, description, height, weight, category, abilities, image_path, user_id)
+
+                flash("New Pokémon added successfully!", "success")
                 return redirect("/main")
-            else:
-                return None
 
-         
-
-    return render_template("newpokemon.html", form=form)
+    return render_template("newpokemon.html", form=form, pokemon_exists=pokemon_exists)
 

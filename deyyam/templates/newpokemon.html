@@ -3,48 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Pokemon Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/newpokemon.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex items-center justify-center">
-
-<div class="container mx-auto px-4">
-    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-8">
-        <h1 class="text-3xl font-semibold mb-4 text-center text-gray-800">Add Pokémon Details</h1>
-        <form method="POST" action="">
+<body class="bg-teal-700">
+    <h1 class="text-center mb-8 text-4xl text-white italic">Lets's add new pokemons...</h1>
+    <div class="form-box text-white ">
+        <form method="POST" action="/new">
             {{ form.hidden_tag() }}
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-800">Name</label>
-                {{ form.name(class="form-input mt-1 block w-full rounded-md border-transparent bg-gray-100 focus:border-blue-500 focus:bg-white focus:ring focus:ring-blue-500 focus:ring-opacity-50") }}
+            {% if pokemon_exists %}
+            <div class="item flex justify-between text-white italic ">
+                <p class="text-green-950 italic">This Pokémon already exists!</p>
             </div>
-            <div class="mb-4">
-                <label for="image_url" class="block text-sm font-medium text-gray-800">Image URL</label>
-                {{ form.image_url(class="form-input mt-1 block w-full rounded-md border-transparent bg-gray-100 focus:border-blue-500 focus:bg-white focus:ring focus:ring-blue-500 focus:ring-opacity-50") }}
+            {% endif %}
+            <div class="item flex justify-between italic">
+                <label >{{ form.name.label }}</label>
+                <p class="text-black">{{ form.name() }}</p>
             </div>
-            <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-800">Description</label>
-                {{ form.description(class="form-input mt-1 block w-full rounded-md border-transparent bg-gray-100 focus:border-blue-500 focus:bg-white focus:ring focus:ring-blue-500 focus:ring-opacity-50") }}
+            <div class="item flex justify-between italic">
+                <label >{{ form.image_url.label }}</label>
+                <p class="text-black">{{ form.image_url() }}</p>
             </div>
-            <div class="mb-4">
-                <label for="height" class="block text-sm font-medium text-gray-800">Height</label>
-                {{ form.height(class="form-input mt-1 block w-full rounded-md border-transparent bg-gray-100 focus:border-blue-500 focus:bg-white focus:ring focus:ring-blue-500 focus:ring-opacity-50") }}
+            <div class="item flex justify-between italic">
+                <label >{{ form.description.label }}</label>
+                <p class="text-black">{{ form.description() }}</p>
             </div>
-            <div class="mb-4">
-                <label for="weight" class="block text-sm font-medium text-gray-800">Weight</label>
-                {{ form.weight(class="form-input mt-1 block w-full rounded-md border-transparent bg-gray-100 focus:border-blue-500 focus:bg-white focus:ring focus:ring-blue-500 focus:ring-opacity-50") }}
+            <div class="item flex justify-between italic">
+                <label >{{ form.height.label }}</label>
+                <p class="text-black">{{ form.height() }}</p>
             </div>
-            <div class="mb-4">
-                <label for="category" class="block text-sm font-medium text-gray-800">Category</label>
-                {{ form.category(class="form-input mt-1 block w-full rounded-md border-transparent bg-gray-100 focus:border-blue-500 focus:bg-white focus:ring focus:ring-blue-500 focus:ring-opacity-50") }}
+            <div class="item flex justify-between italic">
+                <label >{{ form.weight.label }}</label>
+                <p class="text-black">{{ form.weight() }}</p>
             </div>
-            <div class="mb-4">
-                <label for="abilities" class="block text-sm font-medium text-gray-800">Abilities</label>
-                {{ form.abilities(class="form-input mt-1 block w-full rounded-md border-transparent bg-gray-100 focus:border-blue-500 focus:bg-white focus:ring focus:ring-blue-500 focus:ring-opacity-50") }}
+            <div class="item flex justify-between italic">
+                <label >{{ form.category.label }}</label>
+                <p class="text-black">{{ form.category() }}</p>
             </div>
-            <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md w-full">Submit</button>
+            <div class="item flex justify-between italic">
+                <label >{{ form.abilities.label }}</label>
+                <p class="text-black ">{{ form.abilities() }}</P>
+            </div>
+            <div class="item text-xl cursor-pointer  text-center">
+                <button type="submit" class="cursor-pointer bg-white rounded-lg text-green-950 p-2 w-1/3 mt-5">SUBMIT</button>
+            </div>
         </form>
     </div>
-</div>
-
 </body>
 </html>
